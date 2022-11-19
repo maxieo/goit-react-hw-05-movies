@@ -3,8 +3,9 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import errorIMG from '../../../images/errorIMG.png'
+import { CastList, CastPhoto, CastItem } from "./cast.styled"
 
-export const Cast = () => { 
+const Cast = () => { 
   const [actors, setActors] = useState([])
   const { movieId } = useParams()
   
@@ -16,18 +17,20 @@ export const Cast = () => {
   }, [movieId])
 
   return (
-    <ul>
+    <CastList>
       {actors.map(actor => { 
         const img = `https://image.tmdb.org/t/p/w500${actor.profile_path}`
 
         return (
-          <li>
-            <img src={actor.profile_path ? img : errorIMG} alt={actor.name} />
+          <CastItem key={actor.id}>
+            <CastPhoto src={actor.profile_path ? img : errorIMG} alt={actor.name} />
             <h2>{actor.name}</h2>
             <p>Character: {actor.character}</p>
-          </li>
+          </CastItem>
         )
       })}
-    </ul>
+    </CastList>
   )
 }
+
+export default Cast

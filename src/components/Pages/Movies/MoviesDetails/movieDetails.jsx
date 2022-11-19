@@ -3,11 +3,13 @@ import { useState } from "react"
 import { Outlet, useLocation, useParams } from "react-router-dom"
 import { movieDetails } from "components/api"
 import { MovieCard } from "./movieCard"
+import { LocBtn,LinkButton } from "./movieDetails.styled"
+import { Section } from "../movies.styled"
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [film, setFilm] = useState({})
   const { movieId } = useParams()
-  const location = useLocation
+  const location = useLocation()
 
   useEffect(() => { 
     if (!movieId)
@@ -19,12 +21,12 @@ export const MovieDetails = () => {
 
 
 return (
-  <section>
-    <div>
-      <button type="button" to={location.state?.from ?? '/'}>
+  <Section>
+    <LinkButton>
+      <LocBtn to={location.state?.from ?? '/'}>
         Go Back
-      </button>
-    </div>
+      </LocBtn>
+    </LinkButton>
     {film.id && (
       <MovieCard
         poster_path={film.poster_path}
@@ -35,11 +37,14 @@ return (
         vote_average={film.vote_average ?? 0}
       />
     )}
-    <div>
-      <button to="cast" state={{ from: location.state?.from ?? '/' }}>Cast</button>
-      <button to="reviews" state={{ from: location.state?.from ?? '/' }}>Reviews</button> 
-    </div>
+    <LinkButton>
+      <LocBtn to="cast" state={{ from: location.state?.from ?? '/' }}>Cast</LocBtn>
+      <LocBtn to="reviews" state={{ from: location.state?.from ?? '/' }}>Reviews</LocBtn> 
+    </LinkButton>
     <Outlet/>
-  </section>
+  </Section>
   )
 }
+
+
+export default MovieDetails

@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { Outlet } from "react-router-dom"
 import { Header, Nav, Button } from "./layout.styled"
 
@@ -10,7 +11,9 @@ export const Layout = () => {
           <Button to="/movies">Movies</Button>
         </Nav>
       </Header>
-      <Outlet/>
+      <Suspense fallback={null}>
+        <Outlet/>
+      </Suspense>
     </div>
   )
 }

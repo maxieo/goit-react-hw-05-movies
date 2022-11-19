@@ -12,7 +12,7 @@ import {
 } from './movies.styled';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export const Movies = () => {
+const Movies = () => {
   const [query, setQuery] = useState('');
   const [films, setFilms] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -78,3 +78,5 @@ export const Movies = () => {
     </Section>
   );
 };
+
+export default Movies

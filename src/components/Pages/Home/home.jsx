@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { trendingToday } from "components/api"
 import { FilmItem } from "components/FilmItem/filmItem"
+import { HomeList } from "./home.styled"
 
-export const Home = () => { 
+const Home = () => { 
   const [films, setFilms] = useState([])
   
   useEffect(() => { 
@@ -11,13 +12,15 @@ export const Home = () => {
 
 
 return (
-  <li>
+  <HomeList>
     {films.map(film => { 
       const { id, poster_path, title, name } = film
       return (
         <FilmItem key={id} posterPath={poster_path} title={title ?? name} movieId={id} />
       )
     })}
-  </li>
+  </HomeList>
   )
 }
+
+export default Home

@@ -19,7 +19,7 @@ export const FilmItem = ({posterPath, title, movieId}) => {
 }
 
 FilmItem.propTypes = {
-  posterPath: PropTypes.string.isRequired,
+  posterPath: PropTypes.string,
   title: PropTypes.string.isRequired,
   movieId: PropTypes.number.isRequired
 }

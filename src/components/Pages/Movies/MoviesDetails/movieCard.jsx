@@ -1,15 +1,16 @@
 import errorIMG from '../../../images/errorIMG.png'
 import PropTypes from 'prop-types'
+import { Wrap,StyleImg,Description,PosterImg } from './movieCard.styled'
 
 
 export const MovieCard = ({ poster_path, original_title, release_date, genres, overview, vote_average }) => { 
   const poster = `https://image.tmdb.org/t/p/w500/${poster_path}`
   return (
-    <div>
-      <div>
-        <img src={poster_path ? poster : errorIMG} alt={original_title} />
-      </div>
-      <div>
+    <Wrap>
+      <StyleImg>
+        <PosterImg src={poster_path ? poster : errorIMG} alt={original_title} />
+      </StyleImg>
+      <Description>
         <h2>{original_title} ({release_date.slice(0.4)})</h2>
         <p>User Rating: {vote_average.toFixed(1) * 10}%</p>
         <div>
@@ -22,8 +23,8 @@ export const MovieCard = ({ poster_path, original_title, release_date, genres, o
             return genre.name + ' '
           })}</p>
         </div>
-      </div>
-    </div>
+      </Description>
+    </Wrap>
   )
 }
 
